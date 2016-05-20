@@ -1,28 +1,39 @@
 <div ng-controller="GuestController">
 
-  <h1>What up</h1>
+  <h1>sign up to guestlist</h1>
 
-  <form ng-submit="addGuest()">
-    <input id="name" name="name" placeholder="name" ng-model="newGuest.name">
-    <input id="name" name="name" placeholder="name">
-  </form>
+    <div id="form_div">
+      <form ng-submit="addGuest()">
+        <input id="name" type="text" name="name" placeholder="name" ng-model="newGuest.name">
+        <input id="email" type="text" name="email" placeholder="email" ng-model="newGuest.email">
+        <input id="guestcount" type="number" name="guestcount" placeholder="how many guests" ng-model="newGuest.guestcount">
+        <button type="submit" name="button">request invite</button>
+      </form>
+    </div>
 
-  <hr>
+    <hr>
 
-  <input type="text" name="search" value="" ng-model="searchQuery">
+    <div id="search_input">
+      <input type="text" name="search" value="" placeholder="who you looking for" ng-model="searchQuery">
+    </div>
 
-  <br>
+    <br>
 
-  <div class="container">
-      <ul class="guests">
-        <span class="guest" ng-repeat="guest in guests | filter:{name:searchQuery}">
+    <div class="container">
+        <table class="guests">
+          <tr>
+            <th width="250">Name</th>
+            <th>Email</th>
+            <th width="180">Guest Count</th>
+            <th width="100">Remove</th>
+          </tr>
+          <tr ng-repeat="guest in guests | filter:{name:searchQuery} | orderBy:id:reverse">
+            <td>{{guest.name}}</td>
+            <td>{{guest.email}}</td>
+            <td>{{guest.guestcount}}</td>
+            <td><button ng-click="deleteGuest(guest)">Remove</button></td>
+          </tr>
 
-          <p>{{guest.name}}</p>
-          <p>{{guest.email}}</p>
-          <p>{{guest.guestcount}}</p>
-
-        </span>
-
-      </ul>
-  </div>
+        </table>
+    </div>
 </div>
