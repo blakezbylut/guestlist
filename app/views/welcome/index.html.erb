@@ -1,0 +1,28 @@
+<div ng-controller="GuestController">
+
+  <h1>What up</h1>
+
+  <form ng-submit="addGuest()">
+    <input id="name" name="name" placeholder="name" ng-model="newGuest.name">
+    <input id="name" name="name" placeholder="name">
+  </form>
+
+  <hr>
+
+  <input type="text" name="search" value="" ng-model="searchQuery">
+
+  <br>
+
+  <div class="container">
+      <ul class="guests">
+        <span class="guest" ng-repeat="guest in guests | filter:{name:searchQuery}">
+
+          <p>{{guest.name}}</p>
+          <p>{{guest.email}}</p>
+          <p>{{guest.guestcount}}</p>
+
+        </span>
+
+      </ul>
+  </div>
+</div>
